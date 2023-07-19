@@ -25,7 +25,7 @@ def get_proj():
                   [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]])
     D = np.array([-3.12480991e+00, 1.20483327e+02, 7.63097732e-03, -5.64181108e-03])
 
-    jsonLidarPath = "exp-data/lidar/data_1.json"  # Replace with the actual path to your LiDAR JSON file
+    jsonLidarPath = "../yolov5-lidar-fusion/exp-data/lidar/data_1.json"  # Replace with the actual path to your LiDAR JSON file
 
     with open(jsonLidarPath) as f:
         try:

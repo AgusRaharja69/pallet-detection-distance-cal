@@ -18,7 +18,7 @@ def run():
             lidarData = {}
             filtered_val = [(quality, angle, distance) for quality, angle, distance in val if 135 <= angle <= 225]
             lidarData["data"] = filtered_val
-            with open('exp-data/lidar/data_18.json','w') as outfile :
+            with open('../yolov5-lidar-fusion/exp-data/lidar/data_18.json','w') as outfile :
                 json.dump(lidarData, outfile, indent=2)
                 lidarData["data"] = [0,0,0]
     except KeyboardInterrupt:
