@@ -149,15 +149,17 @@ for im0, det in run():
         cv2.putText(im0, text=str(dist) + "cm", org=(p2[0]+20, p1[1]+5),  # distance
         fontFace=cv_font, fontScale=0.5, color=(0, 255, 0), thickness=1, lineType=cv2.LINE_AA)
 
-    ''' Stream results '''
-    im0 = np.asarray(im0)
+    ''' Stream results '''    # uncommend if using webcam
         # if platform.system() == 'Linux' and p not in windows:
         #     windows.append(p)
         #     cv2.namedWindow(str(p), cv2.WINDOW_NORMAL | cv2.WINDOW_KEEPRATIO)  # allow window resize (Linux)
         #     cv2.resizeWindow(str(p), im0.shape[1], im0.shape[0])
+        # cv2.imshow(str(1), im0)
+        # key = cv2.waitKey(1)  # 1 millisecond
 
-    while(len(im0)==480):
-        
+    ''' Stream results '''    # uncommend if using image Path
+    im0 = np.asarray(im0)
+    while(len(im0)==480):        
         cv2.imshow(str(1), im0)
         key = cv2.waitKey(1)  # 1 millisecond
         if key == ord('s'):

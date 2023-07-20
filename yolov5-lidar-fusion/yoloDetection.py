@@ -10,7 +10,7 @@ from utils.torch_utils import select_device
 def run(
         weights='runs/train/exp2/weights/best.pt',  # model path or triton URL
         # source='1',  # file/dir/URL/glob/screen/0(webcam)
-        source = 'exp-data/images/img_9.jpg',
+        source = 'exp-data/images/img_9.jpg', # change to 0 if using webcam
         data='data/data.yaml',  # dataset.yaml path
         imgsz=(320, 320),  # inference size (height, width)
         conf_thres=0.25,  # confidence threshold
@@ -31,12 +31,16 @@ def run(
     stride, pt = model.stride, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
 
-    # Dataloader
+    ###########
+    # Dataloader Webcam
     # dataset = LoadStreams(source, img_size=imgsz, stride=stride, auto=pt, vid_stride=vid_stride)
     # bs = len(dataset)
-    #######
+
+    # Dataloader Image Path
     dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt, vid_stride=vid_stride)
     bs = 1
+    ############
+
     # Run inference
     model.warmup(imgsz=(1 if pt or model.triton else bs, 3, *imgsz))  # warmup
     dt =(Profile(), Profile(), Profile())
@@ -59,12 +63,11 @@ def run(
 
         # Process predictions
         for i, det in enumerate(pred):  # per image
-            # im0= im0s[i].copy()
-            im0= im0s.copy()        
+            # im0= im0s[i].copy() # uncommend if webcam
+            im0= im0s.copy()      # uncommend if image path 
             if len(det):
                 # Rescale boxes from img_size to im0 size
                 det[:, :4] = scale_boxes(im.shape[2:], det[:, :4], im0.shape).round() 
-                # yield {'imR' : im0, 'detR' : det}
                 yield im0,det
 
 def main():
