@@ -58,6 +58,7 @@ cd yolov5-lidar-fusion
                   [0.00000000e+00, 0.00000000e+00, 1.00000000e+00]])
     D = np.array([-3.12480991e+00, 1.20483327e+02, 7.63097732e-03, -5.64181108e-03])
 ```
+### Object and Distance Detection
 7. To use the pallet detection and distance calculation, execute the following command:
 
 ```bash
